@@ -58,6 +58,14 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
 .stop-time{font-size:10px;color:var(--ink-muted);margin-bottom:2px;letter-spacing:.05em}
 .stop-name{font-size:13px;font-weight:500;color:var(--ink);line-height:1.4}
 .stop-desc{font-size:12px;color:var(--ink-soft);margin-top:4px;line-height:1.6;font-weight:300}
+.place-meta{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-top:8px}
+.place-address{flex:1 1 210px;font-size:11px;line-height:1.5;color:var(--ink-muted);background:var(--sand);border:1px solid var(--border);border-radius:10px;padding:7px 10px;word-break:break-word}
+.place-actions{display:flex;gap:8px;flex-wrap:wrap}
+.copy-address-btn{appearance:none;border:none;border-radius:999px;background:var(--accent);color:#fff;font-size:11px;font-weight:500;padding:7px 10px;cursor:pointer;transition:transform .15s ease,opacity .15s ease;white-space:nowrap}
+.copy-address-btn:active{transform:scale(.97);opacity:.92}
+.copy-address-btn.copied{background:var(--teal)}
+.maps-open-btn{appearance:none;border:none;border-radius:999px;background:var(--ink);color:var(--sand);font-size:11px;font-weight:500;padding:7px 10px;cursor:pointer;transition:transform .15s ease,opacity .15s ease;white-space:nowrap}
+.maps-open-btn:active{transform:scale(.97);opacity:.92}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
 .tag{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:400}
 .tag-blue{background:#e8f0fe;color:#1a56a8}
@@ -75,6 +83,10 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
 .night-icon{font-size:16px;flex-shrink:0;margin-top:1px}
 .night-name{font-size:13px;font-weight:500;color:#f5d5a0}
 .night-desc{font-size:12px;color:rgba(245,213,160,.65);margin-top:3px;line-height:1.55}
+.night-card .place-address{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08);color:rgba(245,213,160,.75)}
+.night-card .copy-address-btn{background:#f5d5a0;color:#2d1f0e}
+.night-card .copy-address-btn.copied{background:#5fd0bb}
+.night-card .maps-open-btn{background:rgba(255,255,255,.12);color:#f5d5a0;border:1px solid rgba(245,213,160,.18)}
 
 /* AB PLAN */
 .ab-wrap{background:var(--sand);border-radius:10px;margin-top:8px;overflow:hidden}
@@ -817,6 +829,172 @@ function abSwitch(el, targetId) {
     body.style.maxHeight = body.scrollHeight + 400 + 'px';
   }
 }
+
+const stopAddresses = [
+  'Kansai International Airport Terminal 1, 1 Senshukukokita, Izumisano, Osaka 549-0001, Japan',
+  'Dotonbori, 1 Chome Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
+  'Ebisubashi Bridge, 1 Chome Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
+  'Universal Studios Japan, 2 Chome-1-33 Sakurajima, Konohana Ward, Osaka 554-0031, Japan',
+  'Hankyu Osaka-Umeda Station, 1 Chome-1-2 Shibata, Kita Ward, Osaka 530-0012, Japan',
+  null,
+  'Kobe Sannomiya Center Gai, 2 Chome Sannomiyacho, Chuo Ward, Kobe, Hyogo 650-0021, Japan',
+  'Nankinmachi Square, 1 Chome-3 Sakaemachidori, Chuo Ward, Kobe, Hyogo 650-0023, Japan',
+  'Moxy Osaka Shin Umeda, 7-22-1 Fukushima, Fukushima Ward, Osaka 553-0003, Japan',
+  'Kintetsu Nara Station, 29 Higashimuki Nakamachi, Nara 630-8215, Japan',
+  'Todai-ji Daibutsuden, 406-1 Zoshicho, Nara 630-8587, Japan',
+  'Naramachi, Gangojicho, Nara 630-8335, Japan',
+  'Kintetsu Nara Station, 29 Higashimuki Nakamachi, Nara 630-8215, Japan',
+  'Tempozan Giant Ferris Wheel, 1 Chome-1-10 Kaigandori, Minato Ward, Osaka 552-0022, Japan',
+  'Tempozan Marketplace, 1 Chome-1-10 Kaigandori, Minato Ward, Osaka 552-0022, Japan',
+  'Kids Plaza Osaka, 2 Chome-1-7 Ogimachi, Kita Ward, Osaka 530-0025, Japan',
+  'Grand Front Osaka, 4-20 Ofukacho, Kita Ward, Osaka 530-0011, Japan',
+  'Moxy Osaka Shin Umeda, 7-22-1 Fukushima, Fukushima Ward, Osaka 553-0003, Japan',
+  'Daimaru Umeda, 3-1-1 Umeda, Kita Ward, Osaka 530-8202, Japan',
+  'Moxy Osaka Shin Umeda, 7-22-1 Fukushima, Fukushima Ward, Osaka 553-0003, Japan',
+  'Grand Front Osaka, 4-20 Ofukacho, Kita Ward, Osaka 530-0011, Japan',
+  'Herbis Osaka Bus Terminal, 2 Chome-5-25 Umeda, Kita Ward, Osaka 530-0001, Japan',
+  'Hotel Nikko Kansai Airport, 1 Senshukukokita, Izumisano, Osaka 549-0001, Japan',
+  'Hotel Nikko Kansai Airport, 1 Senshukukokita, Izumisano, Osaka 549-0001, Japan',
+  'Kansai International Airport Terminal 1, 1 Senshukukokita, Izumisano, Osaka 549-0001, Japan'
+];
+
+const optionAddresses = [
+  ['ab3a', 'Kobe Animal Kingdom, 7-1-9 Minatojima Minamimachi, Chuo Ward, Kobe, Hyogo 650-0047, Japan'],
+  ['ab3b', 'Kobe Suma Sea World, 1-3 Wakamiyacho, Suma Ward, Kobe, Hyogo 654-0049, Japan']
+];
+
+const nightAddresses = [
+  'Glico Sign, 1 Chome-10 Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
+  'Dotonbori Shopping Street, 1 Chome Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
+  'Tombori River Walk, 1 Chome Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
+  'Don Quijote Dotonbori Ferris Wheel Ebisu Tower, 1-6-13 Dotonbori, Chuo Ward, Osaka 542-0071, Japan'
+];
+
+function fallbackCopyText(text) {
+  const input = document.createElement('textarea');
+  input.value = text;
+  input.setAttribute('readonly', '');
+  input.style.position = 'absolute';
+  input.style.left = '-9999px';
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+}
+
+function markCopied(button) {
+  const originalText = button.dataset.originalText || '\u590d\u5236\u5730\u5740';
+  button.dataset.originalText = originalText;
+  button.textContent = '\u5df2\u590d\u5236';
+  button.classList.add('copied');
+  window.setTimeout(() => {
+    button.textContent = originalText;
+    button.classList.remove('copied');
+  }, 1600);
+}
+
+async function copyAddress(address, button) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(address);
+    } else {
+      fallbackCopyText(address);
+    }
+    markCopied(button);
+  } catch (error) {
+    fallbackCopyText(address);
+    markCopied(button);
+  }
+}
+
+function openGoogleMaps(address) {
+  const encoded = encodeURIComponent(address);
+  const deepLink = `comgooglemaps://?q=${encoded}&directionsmode=driving`;
+  const webFallback = `https://www.google.com/maps/search/?api=1&query=${encoded}`;
+  const start = Date.now();
+
+  const fallbackTimer = window.setTimeout(() => {
+    if (Date.now() - start < 1600) {
+      window.location.href = webFallback;
+    }
+  }, 900);
+
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      window.clearTimeout(fallbackTimer);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }
+  };
+
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  window.location.href = deepLink;
+}
+
+function createPlaceMeta(address) {
+  const meta = document.createElement('div');
+  meta.className = 'place-meta';
+
+  const addressText = document.createElement('div');
+  addressText.className = 'place-address';
+  addressText.textContent = `\u5730\u5740\uff1a${address}`;
+
+  const actions = document.createElement('div');
+  actions.className = 'place-actions';
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'copy-address-btn';
+  button.textContent = '\u590d\u5236\u5730\u5740';
+  button.addEventListener('click', () => copyAddress(address, button));
+
+  const mapsButton = document.createElement('button');
+  mapsButton.type = 'button';
+  mapsButton.className = 'maps-open-btn';
+  mapsButton.textContent = 'Google Maps';
+  mapsButton.addEventListener('click', () => openGoogleMaps(address));
+
+  actions.appendChild(button);
+  actions.appendChild(mapsButton);
+  meta.appendChild(addressText);
+  meta.appendChild(actions);
+  return meta;
+}
+
+function injectStopAddresses() {
+  document.querySelectorAll('.stop').forEach((stop, index) => {
+    const address = stopAddresses[index];
+    if (!address || stop.querySelector('.place-meta')) return;
+
+    const anchor = stop.querySelector('.stop-desc') || stop.querySelector('.stop-name');
+    anchor.insertAdjacentElement('afterend', createPlaceMeta(address));
+  });
+}
+
+function injectOptionAddresses() {
+  optionAddresses.forEach(([id, address]) => {
+    const block = document.getElementById(id);
+    if (!block || block.querySelector('.place-meta')) return;
+    block.appendChild(createPlaceMeta(address));
+  });
+}
+
+function injectNightAddresses() {
+  document.querySelectorAll('.night-spot').forEach((spot, index) => {
+    const address = nightAddresses[index];
+    const content = spot.querySelector('.night-desc')?.parentElement;
+    if (!address || !content || content.querySelector('.place-meta')) return;
+
+    content.appendChild(createPlaceMeta(address));
+  });
+}
+
+function initializePlaceAddresses() {
+  injectStopAddresses();
+  injectOptionAddresses();
+  injectNightAddresses();
+}
+
+initializePlaceAddresses();
 
 // D1 open by default
 document.getElementById('body-d1').style.maxHeight =
