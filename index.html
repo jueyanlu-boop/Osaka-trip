@@ -101,6 +101,9 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
 .beef-card{background:linear-gradient(135deg,#FDE8E0,#FDF0E8);border:1px solid #f0c0a0;border-radius:10px;padding:10px 12px;margin-top:8px}
 .beef-title{font-size:13px;font-weight:500;color:#9B3A1A;margin-bottom:4px}
 .beef-desc{font-size:12px;color:#7a4030;line-height:1.6}
+.beef-card .place-address{background:rgba(255,255,255,.55);border-color:#f0c0a0;color:#7a4030}
+.beef-card .copy-address-btn{background:#9B3A1A}
+.beef-card .maps-open-btn{background:#7a4030;color:#FDF0E8}
 
 /* TIP */
 .tip-box{background:var(--sand);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:12px;color:var(--ink-soft);line-height:1.7;font-weight:300}
@@ -119,11 +122,23 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
 .cost-table td{padding:8px 14px;border-top:1px solid var(--sand);color:var(--ink);vertical-align:top}
 .cost-table .sub{font-size:10px;color:var(--ink-muted);display:block;margin-top:2px;font-weight:300}
 .cost-table .total-row td{border-top:1.5px solid var(--border);font-weight:600}
+.cost-table .num-cell{text-align:right;white-space:nowrap}
+.cost-table .action-cell{width:84px;text-align:right}
+.mini-btn{appearance:none;border:none;border-radius:999px;background:var(--accent-light);color:var(--accent);font-size:11px;font-weight:500;padding:6px 10px;cursor:pointer;white-space:nowrap}
+.mini-btn.is-active{background:var(--teal-light);color:var(--teal)}
+.mini-btn:active{transform:scale(.98)}
+.pill-input{width:92px;border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:12px;text-align:right;color:var(--ink);background:#fff}
 .total-box{background:var(--ink);color:var(--sand);border-radius:16px;padding:18px 20px;margin-bottom:16px}
 .total-row-item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px}
 .total-row-item:last-child{border-bottom:none;font-weight:600;font-size:15px;padding-top:12px;margin-top:4px}
 .total-row-item .label{color:rgba(245,240,232,.65)}
 .total-note{font-size:11px;color:rgba(245,240,232,.45);margin-top:12px;line-height:1.7;font-weight:300}
+.export-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.export-btn{appearance:none;border:none;border-radius:999px;padding:10px 14px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap}
+.export-btn.primary{background:var(--ink);color:var(--sand)}
+.export-btn.secondary{background:var(--accent-light);color:var(--accent)}
+.export-btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--border)}
+.export-btn:disabled{opacity:.5;cursor:wait}
 
 /* HOTELS */
 .hotel-card{background:#fff;border-radius:16px;padding:18px;margin-bottom:12px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
@@ -185,7 +200,7 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
     <div class="day-num" style="background:#e8f0fe;color:#1a56a8">D1</div>
     <div class="day-info">
       <div class="day-title">6月17日（周三）抵达大阪</div>
-      <div class="day-subtitle">16:35 关西机场 → 梅田 · 心斋桥夜景</div>
+      <div class="day-subtitle">16:35 关西机场 → 酒店放行李 · 心斋桥夜景</div>
     </div>
     <div class="day-chev open" id="chev-d1">▼</div>
   </div>
@@ -195,8 +210,8 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
         <div class="stop-dot" style="background:#3B8BD4"></div>
         <div class="stop-content">
           <div class="stop-time">16:35</div>
-          <div class="stop-name">抵达关西机场</div>
-          <div class="stop-desc">南海电铁特急 Rapi:t 或关空快速 → 难波约40分钟，步行/打车至梅田 Moxy</div>
+          <div class="stop-name">先到酒店放行李</div>
+          <div class="stop-desc">落地后先前往 Moxy Osaka Shin Umeda 办理寄存/入住，轻装再去道顿堀吃饭看夜景，带娃会轻松很多</div>
           <div class="tags"><span class="tag tag-gold">交通约¥1,430/人</span></div>
         </div>
       </div>
@@ -831,7 +846,7 @@ function abSwitch(el, targetId) {
 }
 
 const stopAddresses = [
-  'Kansai International Airport Terminal 1, 1 Senshukukokita, Izumisano, Osaka 549-0001, Japan',
+  'Moxy Osaka Shin Umeda, 7-22-1 Fukushima, Fukushima Ward, Osaka 553-0003, Japan',
   'Dotonbori, 1 Chome Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
   'Ebisubashi Bridge, 1 Chome Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
   'Universal Studios Japan, 2 Chome-1-33 Sakurajima, Konohana Ward, Osaka 554-0031, Japan',
@@ -868,6 +883,11 @@ const nightAddresses = [
   'Dotonbori Shopping Street, 1 Chome Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
   'Tombori River Walk, 1 Chome Dotonbori, Chuo Ward, Osaka 542-0071, Japan',
   'Don Quijote Dotonbori Ferris Wheel Ebisu Tower, 1-6-13 Dotonbori, Chuo Ward, Osaka 542-0071, Japan'
+];
+
+const beefAddresses = [
+  'Akanoren, 1 Chome-9-1 Motomachidori, Chuo Ward, Kobe, Hyogo 650-0022, Japan',
+  'Watahan, 1 Chome-3-7 Motomachidori, Chuo Ward, Kobe, Hyogo 650-0022, Japan'
 ];
 
 function fallbackCopyText(text) {
@@ -909,7 +929,7 @@ async function copyAddress(address, button) {
 
 function openGoogleMaps(address) {
   const encoded = encodeURIComponent(address);
-  const deepLink = `comgooglemaps://?q=${encoded}&directionsmode=driving`;
+  const deepLink = `comgooglemaps://?q=${encoded}`;
   const webFallback = `https://www.google.com/maps/search/?api=1&query=${encoded}`;
   const start = Date.now();
 
@@ -950,7 +970,7 @@ function createPlaceMeta(address) {
   const mapsButton = document.createElement('button');
   mapsButton.type = 'button';
   mapsButton.className = 'maps-open-btn';
-  mapsButton.textContent = 'Google Maps';
+  mapsButton.textContent = 'Google Maps搜索';
   mapsButton.addEventListener('click', () => openGoogleMaps(address));
 
   actions.appendChild(button);
@@ -988,10 +1008,19 @@ function injectNightAddresses() {
   });
 }
 
+function injectBeefAddresses() {
+  document.querySelectorAll('.beef-card').forEach((card, index) => {
+    const address = beefAddresses[index];
+    if (!address || card.querySelector('.place-meta')) return;
+    card.appendChild(createPlaceMeta(address));
+  });
+}
+
 function initializePlaceAddresses() {
   injectStopAddresses();
   injectOptionAddresses();
   injectNightAddresses();
+  injectBeefAddresses();
 }
 
 initializePlaceAddresses();
