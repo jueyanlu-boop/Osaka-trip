@@ -139,6 +139,16 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
 .export-btn.secondary{background:var(--accent-light);color:var(--accent)}
 .export-btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--border)}
 .export-btn:disabled{opacity:.5;cursor:wait}
+.budget-editor{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px 16px 10px;margin-bottom:16px}
+.budget-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.budget-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand)}
+.budget-item:last-child{border-bottom:none}
+.budget-label{font-size:12px;color:var(--ink)}
+.budget-note{font-size:10px;color:var(--ink-muted);margin-top:2px}
+.budget-actions{display:flex;align-items:center;gap:8px}
+.budget-total{margin-top:10px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.cell-editor{display:flex;justify-content:flex-end;align-items:center;gap:6px;flex-wrap:wrap}
+.cell-editor .pill-input{width:84px}
 
 /* HOTELS */
 .hotel-card{background:#fff;border-radius:16px;padding:18px;margin-bottom:12px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
@@ -811,6 +821,8 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
 </div><!-- end content -->
 <div class="safe-bottom"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script>
 function switchTab(name) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -1023,7 +1035,519 @@ function initializePlaceAddresses() {
   injectBeefAddresses();
 }
 
+const costDefaults = {
+  tickets: 61400,
+  hotel: 102000,
+  transport: 21050,
+  beef: 7000,
+  meals: 55000,
+  misc: 12000
+};
+
+const costState = { ...costDefaults };
+const rowEditorState = {
+  tickets: [
+    { value: 19000, defaultValue: 19000, active: true, defaultActive: true },
+    { value: 20000, defaultValue: 20000, active: true, defaultActive: true },
+    { value: 12000, defaultValue: 12000, active: true, defaultActive: true },
+    { value: 4400, defaultValue: 4400, active: true, defaultActive: true },
+    { value: 6200, defaultValue: 6200, active: false, defaultActive: false },
+    { value: 1600, defaultValue: 1600, active: true, defaultActive: true },
+    { value: 400, defaultValue: 400, active: true, defaultActive: true },
+    { value: 1800, defaultValue: 1800, active: true, defaultActive: true },
+    { value: 2200, defaultValue: 2200, active: true, defaultActive: true }
+  ],
+  beef: [
+    { value: 6000, defaultValue: 6000, active: true, defaultActive: true },
+    { value: 8000, defaultValue: 8000, active: true, defaultActive: true }
+  ],
+  hotel: [
+    { value: 72000, defaultValue: 72000, active: true, defaultActive: true },
+    { value: 30000, defaultValue: 30000, active: true, defaultActive: true }
+  ],
+  transport: [
+    { value: 4290, defaultValue: 4290, active: true, defaultActive: true },
+    { value: 1680, defaultValue: 1680, active: true, defaultActive: true },
+    { value: 2460, defaultValue: 2460, active: true, defaultActive: true },
+    { value: 1160, defaultValue: 1160, active: true, defaultActive: true },
+    { value: 4080, defaultValue: 4080, active: true, defaultActive: true },
+    { value: 1080, defaultValue: 1080, active: true, defaultActive: true },
+    { value: 900, defaultValue: 900, active: true, defaultActive: true },
+    { value: 5400, defaultValue: 5400, active: true, defaultActive: true }
+  ]
+};
+
+function formatYen(value) {
+  return `¥${Math.round(Number(value || 0)).toLocaleString('en-US')}`;
+}
+
+function formatCny(value) {
+  const cny = Math.round((Number(value || 0) / 21) * 10) / 10;
+  return `约人民币 ¥${cny.toLocaleString('en-US')}`;
+}
+
+function computeCategoryTotal(category) {
+  const rows = rowEditorState[category];
+  if (!rows) return Number(costState[category] || 0);
+  if (category === 'beef') {
+    const total = rows.reduce((sum, row) => sum + Number(row.value || 0), 0);
+    return Math.round(total / rows.length);
+  }
+  return rows.reduce((sum, row) => sum + (row.active ? Number(row.value || 0) : 0), 0);
+}
+
+function syncComputedCategories() {
+  ['tickets', 'beef', 'hotel', 'transport'].forEach(category => {
+    costState[category] = computeCategoryTotal(category);
+  });
+}
+
+function updateCostSummary() {
+  syncComputedCategories();
+  const tickets = costState.tickets;
+  const hotel = costState.hotel;
+  const transport = costState.transport;
+  const beef = costState.beef;
+  const meals = costState.meals;
+  const misc = costState.misc;
+  const grand = tickets + hotel + transport + beef + meals + misc;
+
+  const mapping = {
+    'cost-total-tickets': tickets,
+    'cost-total-beef': beef,
+    'cost-total-hotel': hotel,
+    'cost-total-transport': transport,
+    'summary-tickets': tickets,
+    'summary-hotel': hotel,
+    'summary-transport': transport,
+    'summary-beef': beef,
+    'summary-meals': meals,
+    'summary-misc': misc,
+    'summary-grand': grand
+  };
+
+  Object.entries(mapping).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = formatYen(value);
+  });
+
+  const cny = document.getElementById('summary-cny');
+  if (cny) cny.textContent = formatCny(grand);
+}
+
+function renderRowEditor(row, state, category) {
+  const valueCell = row.lastElementChild;
+  if (!valueCell || valueCell.querySelector('.cell-editor')) return;
+
+  valueCell.dataset.originalText = valueCell.textContent.trim();
+  valueCell.innerHTML = '';
+  const editor = document.createElement('div');
+  editor.className = 'cell-editor';
+
+  const input = document.createElement('input');
+  input.type = 'number';
+  input.min = '0';
+  input.step = category === 'transport' ? '50' : '100';
+  input.className = 'pill-input';
+  input.value = state.value;
+  input.addEventListener('input', () => {
+    state.value = Math.max(0, Number(input.value || 0));
+    syncBudgetInputsFromRows();
+    refreshBudgetEditorTotals();
+    updateCostSummary();
+  });
+
+  editor.appendChild(input);
+
+  if (category === 'tickets') {
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = `mini-btn${state.active ? ' is-active' : ''}`;
+    toggle.textContent = state.active ? '计入' : '不计';
+    toggle.addEventListener('click', () => {
+      state.active = !state.active;
+      toggle.classList.toggle('is-active', state.active);
+      toggle.textContent = state.active ? '计入' : '不计';
+      row.style.opacity = state.active ? '1' : '.5';
+      syncBudgetInputsFromRows();
+      refreshBudgetEditorTotals();
+      updateCostSummary();
+    });
+    editor.appendChild(toggle);
+    row.style.opacity = state.active ? '1' : '.5';
+  }
+
+  valueCell.appendChild(editor);
+}
+
+function buildRowEditors() {
+  const tables = document.querySelectorAll('#panel-cost .cost-table');
+  const mappings = [
+    ['tickets', tables[0], 9],
+    ['beef', tables[1], 2],
+    ['hotel', tables[2], 2],
+    ['transport', tables[3], 8]
+  ];
+
+  mappings.forEach(([category, table, count]) => {
+    if (!table) return;
+    const rows = Array.from(table.querySelectorAll('tr')).slice(1, count + 1);
+    rows.forEach((row, index) => {
+      if (!rowEditorState[category]?.[index]) return;
+      renderRowEditor(row, rowEditorState[category][index], category);
+    });
+  });
+}
+
+function scaleCategoryRows(category, targetTotal) {
+  const rows = rowEditorState[category];
+  if (!rows?.length) {
+    costState[category] = targetTotal;
+    return;
+  }
+
+  const current = computeCategoryTotal(category);
+  if (current === 0) {
+    if (category === 'beef') {
+      const avg = Math.round(targetTotal);
+      rows.forEach(row => { row.value = avg; });
+    } else {
+      const activeRows = rows.filter(row => row.active);
+      const baseRows = activeRows.length ? activeRows : rows;
+      const each = Math.round(targetTotal / baseRows.length);
+      baseRows.forEach(row => { row.value = each; row.active = true; });
+    }
+  } else {
+    const factor = targetTotal / current;
+    rows.forEach(row => {
+      if (category === 'beef' || row.active) {
+        row.value = Math.max(0, Math.round(row.value * factor));
+      }
+    });
+  }
+
+  syncComputedCategories();
+  syncBudgetInputsFromRows();
+  syncRowInputsFromState(category);
+}
+
+function resetCategoryRows(category) {
+  const rows = rowEditorState[category];
+  if (!rows?.length) {
+    costState[category] = costDefaults[category];
+    return;
+  }
+
+  rows.forEach(row => {
+    row.value = row.defaultValue;
+    row.active = row.defaultActive;
+  });
+  syncComputedCategories();
+  syncBudgetInputsFromRows();
+  syncRowInputsFromState(category);
+}
+
+function syncRowInputsFromState(category) {
+  const tables = document.querySelectorAll('#panel-cost .cost-table');
+  const tableMap = { tickets: tables[0], beef: tables[1], hotel: tables[2], transport: tables[3] };
+  const table = tableMap[category];
+  if (!table) return;
+
+  const rows = Array.from(table.querySelectorAll('tr')).slice(1, 1 + rowEditorState[category].length);
+  rows.forEach((row, index) => {
+    const state = rowEditorState[category][index];
+    const input = row.querySelector('.pill-input');
+    if (input) input.value = state.value;
+    const toggle = row.querySelector('.mini-btn');
+    if (category === 'tickets' && toggle) {
+      toggle.classList.toggle('is-active', state.active);
+      toggle.textContent = state.active ? '计入' : '不计';
+      row.style.opacity = state.active ? '1' : '.5';
+    }
+  });
+}
+
+function syncBudgetInputsFromRows() {
+  syncComputedCategories();
+  document.querySelectorAll('[data-budget-input]').forEach(input => {
+    const key = input.dataset.budgetInput;
+    if (key in costState) input.value = costState[key];
+  });
+}
+
+function buildBudgetEditor() {
+  const costPanel = document.getElementById('panel-cost');
+  if (!costPanel || costPanel.querySelector('.budget-editor')) return;
+
+  const editor = document.createElement('div');
+  editor.className = 'budget-editor';
+  editor.innerHTML = `
+    <div class="cost-header" style="margin:-16px -16px 14px;border-radius:16px 16px 0 0;">🧮 预算调整</div>
+    <div class="budget-grid">
+      <div class="budget-item">
+        <div><div class="budget-label">景点门票</div><div class="budget-note">默认按方案A计算</div></div>
+        <div class="budget-actions"><input class="pill-input" type="number" min="0" step="100" data-budget-input="tickets" value="${costDefaults.tickets}"><button class="mini-btn" type="button" data-budget-reset="tickets">默认</button></div>
+      </div>
+      <div class="budget-item">
+        <div><div class="budget-label">住宿</div><div class="budget-note">Moxy 4晚 + 日航 1晚</div></div>
+        <div class="budget-actions"><input class="pill-input" type="number" min="0" step="500" data-budget-input="hotel" value="${costDefaults.hotel}"><button class="mini-btn" type="button" data-budget-reset="hotel">默认</button></div>
+      </div>
+      <div class="budget-item">
+        <div><div class="budget-label">交通</div><div class="budget-note">关西机场 / USJ / 神户 / 奈良 / 利木津</div></div>
+        <div class="budget-actions"><input class="pill-input" type="number" min="0" step="50" data-budget-input="transport" value="${costDefaults.transport}"><button class="mini-btn" type="button" data-budget-reset="transport">默认</button></div>
+      </div>
+      <div class="budget-item">
+        <div><div class="budget-label">神户牛午餐</div><div class="budget-note">默认取两家推荐餐厅中间值</div></div>
+        <div class="budget-actions"><input class="pill-input" type="number" min="0" step="100" data-budget-input="beef" value="${costDefaults.beef}"><button class="mini-btn" type="button" data-budget-reset="beef">默认</button></div>
+      </div>
+      <div class="budget-item">
+        <div><div class="budget-label">其余餐饮</div><div class="budget-note">其余正餐、早餐、零食</div></div>
+        <div class="budget-actions"><input class="pill-input" type="number" min="0" step="500" data-budget-input="meals" value="${costDefaults.meals}"><button class="mini-btn" type="button" data-budget-reset="meals">默认</button></div>
+      </div>
+      <div class="budget-item">
+        <div><div class="budget-label">零食/杂费</div><div class="budget-note">纪念品、饮料、临时消费</div></div>
+        <div class="budget-actions"><input class="pill-input" type="number" min="0" step="500" data-budget-input="misc" value="${costDefaults.misc}"><button class="mini-btn" type="button" data-budget-reset="misc">默认</button></div>
+      </div>
+    </div>
+    <div class="budget-total">
+      <div>
+        <div class="budget-label">调整后总预算</div>
+        <div class="budget-note">下方总计会同步刷新</div>
+      </div>
+      <div style="text-align:right">
+        <div id="budget-grand-total" style="font-size:18px;font-weight:600;color:var(--ink)">${formatYen(Object.values(costDefaults).reduce((sum, value) => sum + value, 0))}</div>
+        <div id="budget-grand-cny" class="budget-note">${formatCny(Object.values(costDefaults).reduce((sum, value) => sum + value, 0))}</div>
+      </div>
+    </div>
+  `;
+
+  costPanel.insertBefore(editor, costPanel.firstElementChild);
+
+  editor.querySelectorAll('[data-budget-input]').forEach(input => {
+    input.addEventListener('input', () => {
+      const key = input.dataset.budgetInput;
+      const nextValue = Math.max(0, Number(input.value || 0));
+      if (rowEditorState[key]) {
+        scaleCategoryRows(key, nextValue);
+      } else {
+        costState[key] = nextValue;
+      }
+      refreshBudgetEditorTotals();
+      updateCostSummary();
+    });
+  });
+
+  editor.querySelectorAll('[data-budget-reset]').forEach(button => {
+    button.addEventListener('click', () => {
+      const key = button.dataset.budgetReset;
+      if (rowEditorState[key]) {
+        resetCategoryRows(key);
+      } else {
+        costState[key] = costDefaults[key];
+        const input = editor.querySelector(`[data-budget-input="${key}"]`);
+        if (input) input.value = costDefaults[key];
+      }
+      refreshBudgetEditorTotals();
+      updateCostSummary();
+    });
+  });
+}
+
+function refreshBudgetEditorTotals() {
+  syncComputedCategories();
+  const grand = Object.values(costState).reduce((sum, value) => sum + value, 0);
+  const total = document.getElementById('budget-grand-total');
+  const cny = document.getElementById('budget-grand-cny');
+  if (total) total.textContent = formatYen(grand);
+  if (cny) cny.textContent = formatCny(grand);
+}
+
+function annotateCostTotals() {
+  const sections = document.querySelectorAll('#panel-cost .cost-section');
+  if (sections[0]) sections[0].querySelector('.total-row td:last-child').id = 'cost-total-tickets';
+  if (sections[1]) sections[1].querySelector('.total-row td:last-child').id = 'cost-total-beef';
+  if (sections[2]) sections[2].querySelector('.total-row td:last-child').id = 'cost-total-hotel';
+  if (sections[3]) sections[3].querySelector('.total-row td:last-child').id = 'cost-total-transport';
+
+  const summaryRows = document.querySelectorAll('#panel-cost .total-box .total-row-item');
+  if (summaryRows[0]) summaryRows[0].lastElementChild.id = 'summary-tickets';
+  if (summaryRows[1]) summaryRows[1].lastElementChild.id = 'summary-hotel';
+  if (summaryRows[2]) summaryRows[2].lastElementChild.id = 'summary-transport';
+  if (summaryRows[3]) summaryRows[3].lastElementChild.id = 'summary-beef';
+  if (summaryRows[4]) summaryRows[4].lastElementChild.id = 'summary-meals';
+  if (summaryRows[5]) summaryRows[5].lastElementChild.id = 'summary-misc';
+  if (summaryRows[6]) {
+    const wrapper = summaryRows[6].lastElementChild;
+    if (wrapper?.childNodes[0]) {
+      const current = wrapper.childNodes[0];
+      const totalSpan = document.createElement('span');
+      totalSpan.id = 'summary-grand';
+      totalSpan.textContent = current.textContent.trim();
+      wrapper.insertBefore(totalSpan, current);
+      wrapper.removeChild(current);
+    }
+    const spans = wrapper?.querySelectorAll('span');
+    const sub = spans && spans.length > 1 ? spans[1] : null;
+    if (sub) sub.id = 'summary-cny';
+  }
+}
+
+function setPanelForExport(panelId) {
+  const panels = document.querySelectorAll('.tab-panel');
+  panels.forEach(panel => panel.classList.toggle('active', panel.id === panelId));
+  const tabName = panelId.replace('panel-', '');
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.getAttribute('onclick') === `switchTab('${tabName}')`);
+  });
+}
+
+function expandPanelForExport(panel) {
+  if (!panel || panel.id !== 'panel-itin') return () => {};
+  const snapshot = Array.from(panel.querySelectorAll('.day-card')).map(card => {
+    const body = card.querySelector('.day-body');
+    const chev = card.querySelector('.day-chev');
+    return {
+      body,
+      chev,
+      maxHeight: body?.style.maxHeight || '',
+      open: chev?.classList.contains('open')
+    };
+  });
+
+  snapshot.forEach(item => {
+    if (!item.body || !item.chev) return;
+    item.body.style.maxHeight = item.body.scrollHeight + 600 + 'px';
+    item.chev.classList.add('open');
+  });
+
+  return () => {
+    snapshot.forEach(item => {
+      if (!item.body || !item.chev) return;
+      item.body.style.maxHeight = item.maxHeight;
+      item.chev.classList.toggle('open', item.open);
+    });
+  };
+}
+
+async function shareOrDownload(blob, filename, mimeType) {
+  const file = new File([blob], filename, { type: mimeType });
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    await navigator.share({ files: [file], title: filename });
+    return;
+  }
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.click();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+}
+
+async function exportPanelAsImage(panelId) {
+  const panel = document.getElementById(panelId);
+  if (!panel || !window.html2canvas) return;
+  const previous = document.querySelector('.tab-panel.active')?.id;
+  setPanelForExport(panelId);
+  const restorePanel = expandPanelForExport(panel);
+  try {
+    const canvas = await window.html2canvas(panel, { backgroundColor: '#faf7f2', scale: 2, useCORS: true });
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+    if (blob) await shareOrDownload(blob, `${panelId.replace('panel-', 'osaka-')}.png`, 'image/png');
+  } finally {
+    restorePanel();
+    if (previous) setPanelForExport(previous);
+  }
+}
+
+async function exportAllPanelsToPdf() {
+  if (!window.html2canvas || !window.jspdf?.jsPDF) return;
+  const previous = document.querySelector('.tab-panel.active')?.id;
+  const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const panels = Array.from(document.querySelectorAll('.tab-panel'));
+
+  for (let index = 0; index < panels.length; index += 1) {
+    const panel = panels[index];
+    setPanelForExport(panel.id);
+    const restorePanel = expandPanelForExport(panel);
+    try {
+      const canvas = await window.html2canvas(panel, { backgroundColor: '#faf7f2', scale: 2, useCORS: true });
+      const imgData = canvas.toDataURL('image/jpeg', 0.92);
+      const imgWidth = pageWidth;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      if (index > 0) pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+    } finally {
+      restorePanel();
+    }
+  }
+
+  const pdfBlob = pdf.output('blob');
+  await shareOrDownload(pdfBlob, 'osaka-trip-all-pages.pdf', 'application/pdf');
+  if (previous) setPanelForExport(previous);
+}
+
+function buildExportBars() {
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    if (panel.querySelector('.export-bar')) return;
+    const panelId = panel.id;
+    const bar = document.createElement('div');
+    bar.className = 'export-bar';
+    bar.innerHTML = `
+      <button class="export-btn primary" type="button" data-export-image="${panelId}">导出当前页图片</button>
+      <button class="export-btn secondary" type="button" data-export-pdf="all">导出全部页面 PDF</button>
+    `;
+    panel.insertBefore(bar, panel.firstElementChild);
+  });
+
+  document.querySelectorAll('[data-export-image]').forEach(button => {
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      try {
+        await exportPanelAsImage(button.dataset.exportImage);
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-export-pdf]').forEach(button => {
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      try {
+        await exportAllPanelsToPdf();
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+}
+
+function initializeBudgetTools() {
+  buildRowEditors();
+  annotateCostTotals();
+  buildBudgetEditor();
+  syncBudgetInputsFromRows();
+  refreshBudgetEditorTotals();
+  updateCostSummary();
+}
+
 initializePlaceAddresses();
+initializeBudgetTools();
+buildExportBars();
 
 // D1 open by default
 document.getElementById('body-d1').style.maxHeight =
