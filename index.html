@@ -196,6 +196,7 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
     <div class="nav-tab" onclick="switchTab('cost')">💴 费用</div>
     <div class="nav-tab" onclick="switchTab('hotels')">🏨 住宿</div>
     <div class="nav-tab" onclick="switchTab('tips')">💡 贴士</div>
+    <div class="nav-tab" onclick="switchTab('usj')">🎢 USJ</div>
   </div>
 </div>
 
@@ -817,6 +818,212 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
   </div>
 
 </div><!-- end tips -->
+
+<!-- ===== USJ ===== -->
+<div class="tab-panel" id="panel-usj">
+
+<!-- EP7 追踪条 -->
+<div style="background:#E6F1FB;border-radius:16px;padding:14px 16px;margin-bottom:16px;border:1px solid #B5D4F4">
+  <div style="font-size:12px;font-weight:500;color:#0C447C;margin-bottom:10px">🎟 妈妈 EP7（含矿车版）· 共7个设施 · 儿子3岁免费随行走快通</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px">
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:#d0ebe7;color:#085041">🍄 任天堂世界入场</span>
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:#d0ebe7;color:#085041">🎮 Mario Kart ①</span>
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:#d0ebe7;color:#085041">🦕 Yoshi ②</span>
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:#d0ebe7;color:#085041">🛒 矿车 Mine Cart ③</span>
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:#ede8fd;color:#3C3489">⚡ 哈利波特入场</span>
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:#ede8fd;color:#3C3489">🦅 鹰马飞行 ④</span>
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:#ede8fd;color:#3C3489">🧙 禁忌之旅 ⑤</span>
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:var(--gold-light);color:#633806">🦈 Jaws ⑥</span>
+    <span style="font-size:11px;padding:3px 9px;border-radius:12px;font-weight:500;background:var(--gold-light);color:#633806">⑦ 飞天翼龙 or 小黄人</span>
+  </div>
+</div>
+
+<!-- 图例 -->
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;padding:9px 12px;background:var(--sand);border-radius:10px;font-size:12px">
+  <span style="display:flex;align-items:center;gap:5px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:50%;background:#378ADD;flex-shrink:0"></span>妈妈+儿子</span>
+  <span style="display:flex;align-items:center;gap:5px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:50%;background:#639922;flex-shrink:0"></span>爸爸</span>
+  <span style="display:flex;align-items:center;gap:5px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:50%;background:#BA7517;flex-shrink:0"></span>排队中</span>
+  <span style="display:flex;align-items:center;gap:5px;color:var(--ink-muted)"><span style="width:10px;height:10px;border-radius:50%;background:rgba(200,87,42,.7);flex-shrink:0"></span>三人会合</span>
+</div>
+
+<!-- 时间表格 -->
+<div style="border:0.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px">
+
+  <!-- 表头 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;background:var(--sand);border-bottom:1px solid var(--border)">
+    <div style="padding:8px 6px"></div>
+    <div style="padding:8px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:#185FA5">妈妈 + 儿子（EP7）</div>
+    <div style="padding:8px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:#3B6D11;border-left:0.5px solid var(--border)">爸爸（普通队）</div>
+  </div>
+
+  <!-- 7:00 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">7:00</div>
+    <div style="padding:6px 7px"><div style="background:#E6F1FB;color:#0C447C;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">全家 USJ 门口排队</div><div style="font-size:11px;margin-top:2px;opacity:.85">开园前90分钟到场 · 带好早餐边等边吃</div></div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#EAF3DE;color:#27500A;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">同行等开园</div><div style="font-size:11px;margin-top:2px;opacity:.85">一起等，开园后不能分开冲</div></div></div>
+  </div>
+
+  <!-- 8:30 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end;flex-direction:column">8:30<span style="font-size:9px;opacity:.5">开园</span></div>
+    <div style="padding:6px 7px"><div style="background:#E6F1FB;color:#0C447C;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">入园 → 全力冲任天堂世界</div><div style="font-size:11px;margin-top:2px;opacity:.85">通常提前15–30分钟开门 · 第一波进入无需整理券</div></div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#EAF3DE;color:#27500A;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">与妈妈同行冲任天堂世界</div><div style="font-size:11px;margin-top:2px;opacity:.85">⚠️ 必须跟第一波进 · 自己无法单独进</div></div></div>
+  </div>
+
+  <!-- 8:45 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">8:45</div>
+    <div style="padding:6px 7px"><div style="background:#E6F1FB;color:#0C447C;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">买 Power-Up Band · 热身互动</div><div style="font-size:11px;margin-top:2px;opacity:.85">入口买好手环 · 打问号砖块 · 带儿子拍照<br><span style="display:inline-block;margin-top:4px;background:#d0ebe7;color:#085041;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:500">待用 EP① Mario Kart 9:00</span></div></div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#FAEEDA;color:#633806;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">进任天堂世界后立刻排矿车普通队</div><div style="font-size:11px;margin-top:2px;opacity:.85">开园第一波约60分钟 · 全天矿车最短的窗口</div></div></div>
+  </div>
+
+  <!-- 9:00 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">9:00</div>
+    <div style="padding:6px 7px"><div style="background:#E6F1FB;color:#0C447C;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">🎮 ① Mario Kart EP 快通 ✓</div><div style="font-size:11px;margin-top:2px;opacity:.85">儿子随妈妈走EP · 约等15分钟 · 儿子第一次！<br><span style="display:inline-block;margin-top:4px;background:#d0ebe7;color:#085041;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:500">EP ① 已用</span></div></div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#FAEEDA;color:#633806;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">矿车普通队中…</div><div style="font-size:11px;margin-top:2px;opacity:.85">约还需30分钟</div></div></div>
+  </div>
+
+  <!-- 9:30 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">9:30</div>
+    <div style="padding:6px 7px"><div style="background:#E6F1FB;color:#0C447C;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">🦕 ② Yoshi EP 快通 ✓</div><div style="font-size:11px;margin-top:2px;opacity:.85">约等5–10分钟 · 俯瞰蘑菇王国 · 儿子必爱<br><span style="display:inline-block;margin-top:4px;background:#d0ebe7;color:#085041;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:500">EP ② 已用</span></div></div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#EAF3DE;color:#27500A;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">矿车出来！✓</div><div style="font-size:11px;margin-top:2px;opacity:.85">约9:30–9:45坐完 · DK区打互动游戏等妈妈</div></div></div>
+  </div>
+
+  <!-- 10:00 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">10:00</div>
+    <div style="padding:6px 7px"><div style="background:#E6F1FB;color:#0C447C;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">🛒 ③ Mine Cart EP 快通 ✓</div><div style="font-size:11px;margin-top:2px;opacity:.85">儿子随妈妈走EP · 约等15分钟<br><span style="display:inline-block;margin-top:4px;background:#d0ebe7;color:#085041;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:500">EP ③ 已用</span></div></div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#EAF3DE;color:#27500A;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">矿车出口等妈妈</div><div style="font-size:11px;margin-top:2px;opacity:.85">打K-O-N-G集章 · 拍DK区照片</div></div></div>
+  </div>
+
+  <!-- 10:30 会合 -->
+  <div style="display:grid;grid-template-columns:48px 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">10:30</div>
+    <div style="padding:6px 7px;background:rgba(200,87,42,.06);border-left:3px solid rgba(200,87,42,.35)"><div style="background:rgba(200,87,42,.12);border:1px solid rgba(200,87,42,.22);border-radius:6px;padding:6px 10px;font-size:11px;color:#712B13;font-weight:500;text-align:center">三人任天堂世界自由玩 🍄<br><span style="font-size:10px;font-weight:400">打Boss / 找钥匙 / 集章 · 奇诺比奥咖啡午饭（提前App预约！）</span></div></div>
+  </div>
+
+  <!-- 12:00 -->
+  <div style="display:grid;grid-template-columns:48px 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">12:00</div>
+    <div style="padding:6px 7px;background:rgba(200,87,42,.06);border-left:3px solid rgba(200,87,42,.35)"><div style="background:rgba(200,87,42,.12);border:1px solid rgba(200,87,42,.22);border-radius:6px;padding:6px 10px;font-size:11px;color:#712B13;font-weight:500;text-align:center">任天堂世界内午饭 + 儿子午休 🍽️<br><span style="font-size:10px;font-weight:400">奇诺比奥咖啡 or DK区小食 · 儿子推车里补觉</span></div></div>
+  </div>
+
+  <!-- 13:00 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">13:00</div>
+    <div style="padding:6px 7px"><div style="background:#E6F1FB;color:#0C447C;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">⚠️ 确认玩够 → 出任天堂世界</div><div style="font-size:11px;margin-top:2px;opacity:.85">出去就不能再进！互动/集章/照片全搞完再出<br><span style="display:inline-block;margin-top:4px;background:#ede8fd;color:#3C3489;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:500">待用 EP④⑤ 哈利波特 13:30</span></div></div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#EAF3DE;color:#27500A;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">App 抢哈利波特区整理券</div><div style="font-size:11px;margin-top:2px;opacity:.85">拿到→情景A · 没拿到→情景B（见下）</div></div></div>
+  </div>
+
+  <!-- 13:30 换班 -->
+  <div style="display:grid;grid-template-columns:48px 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">13:30</div>
+    <div style="padding:6px 7px;background:rgba(200,87,42,.06);border-left:3px solid rgba(200,87,42,.35)"><div style="background:rgba(200,87,42,.12);border:1px solid rgba(200,87,42,.22);border-radius:6px;padding:6px 10px;font-size:11px;color:#712B13;font-weight:500;text-align:center">换班！哈利波特区入口 🤝<br><span style="font-size:10px;font-weight:400">妈妈用EP进 · 爸爸和儿子按情景分配</span></div></div>
+  </div>
+
+  <!-- 13:30–15:30 哈利波特 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">13:30<br>–15:30</div>
+    <div style="padding:6px 7px"><div style="background:#EEEDFE;color:#3C3489;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45">
+      <div style="font-weight:500">⚡ 妈妈独享哈利波特区</div>
+      <div style="font-size:11px;margin-top:3px;opacity:.88">🦅 ④ 鹰马飞行 EP（儿子在→全家坐）<br>🧙 ⑤ 禁忌之旅 EP（妈妈独享）<br>在Ollivander's买互动魔杖带出来 🪄<br>喝奶油啤酒 · 逛霍格莫德村<br><span style="display:inline-block;margin-top:4px;background:rgba(255,255,255,.35);color:#3C3489;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:500">EP ④⑤ 已用</span></div>
+    </div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)">
+      <!-- A/B 情景切换 -->
+      <div style="border-radius:8px;overflow:hidden;border:0.5px solid var(--border)">
+        <div style="display:flex;border-bottom:0.5px solid var(--border)">
+          <button onclick="usjScenario(this,'uhp-a','uhp-b')" id="uhp-btn-a" style="flex:1;padding:6px 4px;font-size:11px;font-weight:500;cursor:pointer;border:none;background:var(--cream);color:var(--accent);border-bottom:2px solid var(--accent);text-align:center">情景A·拿到整理券</button>
+          <button onclick="usjScenario(this,'uhp-b','uhp-a')" id="uhp-btn-b" style="flex:1;padding:6px 4px;font-size:11px;font-weight:500;cursor:pointer;border:none;background:var(--sand);color:var(--ink-muted);border-bottom:2px solid transparent;text-align:center">情景B·没拿到</button>
+        </div>
+        <div id="uhp-a" style="padding:8px 10px;font-size:12px;color:var(--ink-soft);line-height:1.65"><b style="color:var(--ink)">爸爸带儿子一起进哈利波特区 🎉</b><br>和妈妈一起坐 🦅 鹰马飞行（92cm+可）<br>妈妈排禁忌之旅时→爸爸带儿子玩 🪄 魔杖互动<br>逛霍格莫德 · 喝奶油啤酒</div>
+        <div id="uhp-b" style="padding:8px 10px;font-size:12px;color:var(--ink-soft);line-height:1.65;display:none"><b style="color:var(--ink)">爸爸带儿子去环球奇境</b><br>史努比 / Hello Kitty / 旋转木马 / 芝麻街<br>无身高限制 · 儿子超友好<br><span style="font-size:11px;opacity:.7">妈妈买好魔杖带出来给儿子</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15:30 游行 -->
+  <div style="display:grid;grid-template-columns:48px 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">15:30</div>
+    <div style="padding:6px 7px;background:rgba(200,87,42,.06);border-left:3px solid rgba(200,87,42,.35)"><div style="background:rgba(200,87,42,.12);border:1px solid rgba(200,87,42,.22);border-radius:6px;padding:6px 10px;font-size:11px;color:#712B13;font-weight:500;text-align:center">三人会合 · 看 No Limit! 游行 🎉<br><span style="font-size:10px;font-weight:400">下午游行约14:00–16:00 · 找好路边位置 · 马里奥角色合影</span></div></div>
+  </div>
+
+  <!-- 16:00 Jaws -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">16:00</div>
+    <div style="padding:6px 7px"><div style="background:var(--gold-light);color:#633806;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45">
+      <div style="font-weight:500">🦈 ⑥ Jaws EP · 全家一起！</div>
+      <div style="font-size:11px;margin-top:2px;opacity:.88">⚠️ 带好雨衣！会大量喷水 · 进队前穿好<br>手机钱包装夹链袋 · 儿子可坐<br><span style="display:inline-block;margin-top:4px;background:rgba(255,255,255,.4);color:#633806;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:500">EP ⑥ 已用</span></div>
+    </div></div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#EAF3DE;color:#27500A;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">爸爸同行坐 Jaws</div><div style="font-size:11px;margin-top:2px;opacity:.85">⚠️ 也带好雨衣</div></div></div>
+  </div>
+
+  <!-- 16:30 ⑦ 情景切换 -->
+  <div style="display:grid;grid-template-columns:48px 1fr 1fr;border-bottom:0.5px solid var(--border)">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;border-right:0.5px solid var(--border);background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">16:30</div>
+    <div style="padding:6px 7px">
+      <div style="border-radius:8px;overflow:hidden;border:0.5px solid var(--border)">
+        <div style="display:flex;border-bottom:0.5px solid var(--border)">
+          <button onclick="usjScenario(this,'ep7-a','ep7-b')" id="ep7-btn-a" style="flex:1;padding:6px 4px;font-size:11px;font-weight:500;cursor:pointer;border:none;background:var(--cream);color:var(--accent);border-bottom:2px solid var(--accent);text-align:center">儿子累了</button>
+          <button onclick="usjScenario(this,'ep7-b','ep7-a')" id="ep7-btn-b" style="flex:1;padding:6px 4px;font-size:11px;font-weight:500;cursor:pointer;border:none;background:var(--sand);color:var(--ink-muted);border-bottom:2px solid transparent;text-align:center">儿子有力</button>
+        </div>
+        <div id="ep7-a" style="padding:8px 10px;font-size:12px;color:var(--ink-soft);line-height:1.65"><b style="color:var(--ink)">⑦ 飞天翼龙 EP · 妈妈独自</b><br>132cm限制 · EP约等10分钟 · 超刺激收尾<br>爸爸带儿子逛纪念品区休息<br><span style="font-size:10px;background:var(--gold-light);color:#633806;padding:1px 7px;border-radius:10px;font-weight:500">EP ⑦ 飞天翼龙 已用</span></div>
+        <div id="ep7-b" style="padding:8px 10px;font-size:12px;color:var(--ink-soft);line-height:1.65;display:none"><b style="color:var(--ink)">⑦ 小黄人 EP · 全家一起！</b><br>儿子92cm陪同可坐 · 爸爸也一起<br>欢乐大结局，比飞天翼龙更适合带娃<br><span style="font-size:10px;background:var(--gold-light);color:#633806;padding:1px 7px;border-radius:10px;font-weight:500">EP ⑦ 小黄人 已用</span></div>
+      </div>
+    </div>
+    <div style="padding:6px 7px;border-left:0.5px solid var(--border)"><div style="background:#EAF3DE;color:#27500A;border-radius:6px;padding:5px 8px;font-size:12px;line-height:1.45"><div style="font-weight:500">视情景同行</div><div style="font-size:11px;margin-top:2px;opacity:.85">儿子累→带儿子休息等妈妈<br>儿子有力→全家一起坐小黄人</div></div></div>
+  </div>
+
+  <!-- 18:00 -->
+  <div style="display:grid;grid-template-columns:48px 1fr">
+    <div style="font-size:10px;color:var(--ink-muted);text-align:right;padding:8px 6px 8px 0;background:var(--sand);font-weight:500;display:flex;align-items:flex-start;justify-content:flex-end">18:00</div>
+    <div style="padding:6px 7px;background:rgba(200,87,42,.06);border-left:3px solid rgba(200,87,42,.35)"><div style="background:rgba(200,87,42,.12);border:1px solid rgba(200,87,42,.22);border-radius:6px;padding:6px 10px;font-size:11px;color:#712B13;font-weight:500;text-align:center">全家晚饭 · 离园 🌅<br><span style="font-size:10px;font-weight:400">明天还有神户 · 儿子累了不强撑</span></div></div>
+  </div>
+</div><!-- end timeline -->
+
+<!-- 雨衣提醒 -->
+<div style="background:#FDE8E0;border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--accent)">
+  <div style="font-size:12px;font-weight:500;color:#9b3a1a;margin-bottom:4px">🌊 Jaws + 矿车 · 必带雨衣！</div>
+  <div style="font-size:12px;color:#9b3a1a;line-height:1.65">Jaws 会大量喷水，三人都会湿透。<b>入园时就备好折叠雨衣</b>，坐之前穿好，手机钱包装夹链袋。矿车也有小水花。6月梅雨季本来就要带雨衣，一物多用。</div>
+</div>
+
+<!-- 任天堂世界警告 -->
+<div style="background:#FCEBEB;border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:3px solid #E24B4A">
+  <div style="font-size:12px;font-weight:500;color:#A32D2D;margin-bottom:4px">⚠️ 任天堂世界：进去无时间限制，出去不能再进</div>
+  <div style="font-size:12px;color:#A32D2D;line-height:1.65">进去后想待多久都行，没有强制离场时间。但一旦离开区域，EP入场资格用完，无法再次进入。13:00出来前确认互动游戏、集章、照片全搞完。</div>
+</div>
+
+<!-- EP时间段选法 -->
+<div class="cost-section" style="margin-bottom:10px">
+  <div class="cost-header">🎟 EP7 时间段选法（Klook购票时手动选好）</div>
+  <table class="cost-table">
+    <tr><td style="color:var(--ink-muted);width:50%">任天堂世界区域入场</td><td style="font-weight:500">选 8:30–9:00 最早档</td></tr>
+    <tr><td style="color:var(--ink-muted)">① Mario Kart</td><td>9:00</td></tr>
+    <tr><td style="color:var(--ink-muted)">② Yoshi's Adventure</td><td>9:30</td></tr>
+    <tr><td style="color:var(--ink-muted)">③ Mine Cart Madness</td><td>10:00</td></tr>
+    <tr><td style="color:var(--ink-muted)">哈利波特区域入场</td><td style="font-weight:500">选 13:30</td></tr>
+    <tr><td style="color:var(--ink-muted)">④ 鹰马飞行</td><td>13:30</td></tr>
+    <tr><td style="color:var(--ink-muted)">⑤ 禁忌之旅</td><td>14:00</td></tr>
+    <tr><td style="color:var(--ink-muted)">⑥ Jaws</td><td>16:00（随到随用）</td></tr>
+    <tr><td style="color:var(--ink-muted)">⑦ 飞天翼龙 or 小黄人</td><td>16:30（随到随用 · 当天看儿子状态决定）</td></tr>
+  </table>
+</div>
+
+<!-- 爸爸进任天堂世界说明 -->
+<div class="tip-box" style="margin-bottom:10px">
+  <b>爸爸进任天堂世界的唯一机会</b><br>
+  必须与妈妈同行趁开园第一波免整理券进去。8:30官方开园后随时可能拦起来，整理券那时已经发完。<br>
+  <b>预案：</b>若爸爸没赶上第一波，在App抢下午整理券；拿不到就外面刷其他设施，13:30换班照常。
+</div>
+
+<!-- 魔杖 -->
+<div class="tip-box">
+  <b>🪄 儿子玩魔杖：妈妈买好带出来</b><br>
+  哈利波特区爸爸和儿子能否进入取决于整理券，不保证。稳妥方案：妈妈在区域内 Ollivander's 买一根互动魔杖（约¥4,900）带出来给儿子当纪念。若爸爸拿到整理券带儿子进去玩魔杖互动是意外惊喜。
+</div>
+
+</div><!-- end usj -->
 
 </div><!-- end content -->
 <div class="safe-bottom"></div>
@@ -1543,6 +1750,23 @@ function initializeBudgetTools() {
   syncBudgetInputsFromRows();
   refreshBudgetEditorTotals();
   updateCostSummary();
+}
+
+function usjScenario(activeBtn, showId, hideId) {
+  // toggle content
+  const show = document.getElementById(showId);
+  const hide = document.getElementById(hideId);
+  if (show) show.style.display = 'block';
+  if (hide) hide.style.display = 'none';
+  // toggle button styles
+  const wrap = activeBtn.closest('div');
+  if (!wrap) return;
+  wrap.querySelectorAll('button').forEach(btn => {
+    const isActive = btn === activeBtn;
+    btn.style.background = isActive ? 'var(--cream)' : 'var(--sand)';
+    btn.style.color = isActive ? 'var(--accent)' : 'var(--ink-muted)';
+    btn.style.borderBottom = isActive ? '2px solid var(--accent)' : '2px solid transparent';
+  });
 }
 
 initializePlaceAddresses();
