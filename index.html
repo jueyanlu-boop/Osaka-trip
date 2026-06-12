@@ -177,14 +177,14 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Family Trip · 大阪 神户 奈良</div>
+    <div class="hero-eyebrow">Family Trip · 大阪 铃鹿 奈良</div>
     <h1>关西<span>亲子行</span></h1>
     <div class="hero-sub">6月17日 — 6月22日 · 2大人 + 1男孩（3.5岁）</div>
     <div class="hero-tags">
       <span class="hero-tag">✈ 关西机场</span>
       <span class="hero-tag">🎢 USJ</span>
       <span class="hero-tag">🦌 奈良</span>
-      <span class="hero-tag">🐋 神户</span>
+      <span class="hero-tag">🏎️ 铃鹿赛道</span>
       <span class="hero-tag">🏙 梅田</span>
     </div>
   </div>
@@ -320,111 +320,14 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
 <!-- D3 -->
 <div class="day-card">
   <div class="day-header" onclick="toggleDay('d3')">
-    <div class="day-num" style="background:#FDE8E0;color:#9B3A1A">D3</div>
+    <div class="day-num" style="background:#ede8fd;color:#5b4ab0">D3</div>
     <div class="day-info">
-      <div class="day-title">6月19日（周五）神户一日游</div>
-      <div class="day-subtitle">早出晚归 · 亲子景点 + 神户牛午餐 + 港口</div>
+      <div class="day-title">6月19日（周四）奈良半日 → 梅田</div>
+      <div class="day-subtitle">梅田出发 → 奈良喂鹿 → 天保山摩天轮</div>
     </div>
     <div class="day-chev" id="chev-d3">▼</div>
   </div>
   <div class="day-body" id="body-d3">
-    <div class="day-body-inner">
-      <div class="stop">
-        <div class="stop-dot" style="background:#3B8BD4"></div>
-        <div class="stop-content">
-          <div class="stop-time">9:00</div>
-          <div class="stop-name">梅田出发 → 神户三宫</div>
-          <div class="stop-desc">阪神电铁梅田 → 三宫，约35分钟，¥410/人</div>
-        </div>
-      </div>
-      <div class="stop">
-        <div class="stop-dot" style="background:#3B8BD4"></div>
-        <div class="stop-content">
-          <div class="stop-time">10:00–13:00</div>
-          <div class="stop-name">上午主景点（A/B 二选一）</div>
-          <div class="stop-desc">出发前官网确认动物王国是否当天开放</div>
-          <div class="ab-wrap">
-            <div class="ab-tabs">
-              <button class="ab-tab active" onclick="abSwitch(this,'ab3a')">方案 A · 神户动物王国</button>
-              <button class="ab-tab" onclick="abSwitch(this,'ab3b')">方案 B · 须磨海洋世界</button>
-            </div>
-            <div class="ab-body active" id="ab3a">
-              <span style="color:#c0392b;font-weight:500">⚠️ 通常周四休园，务必提前官网确认</span><br>
-              三宫转 Port Liner → 京コンピュータ前站（约15分钟）。全室内互动动物园，喂水豚/袋鼠/羊驼，鸟类飞行表演，<b>3.5岁最爱景点之一</b>
-              <div class="tags" style="margin-top:6px">
-                <span class="tag tag-blue">大人¥2,200×2</span>
-                <span class="tag tag-green">儿子（3岁）免费</span>
-                <span class="tag tag-blue">Port Liner ¥580往返/人</span>
-              </div>
-            </div>
-            <div class="ab-body" id="ab3b">
-              <span style="color:#5b4ab0;font-weight:500">▶ 动物王国休园时启用</span><br>
-              JR神户线 三宫 → 须磨海滨公园站（约20分钟）。2024年新开，虎鲸+海豚表演，触摸池可摸鲨鱼，背景是真实大海
-              <div class="tags" style="margin-top:6px">
-                <span class="tag tag-blue">大人¥3,100×2</span>
-                <span class="tag tag-green">儿子（3岁以下）免费</span>
-                <span class="tag tag-blue">营业 10:00–18:00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="stop">
-        <div class="stop-dot" style="background:#9B3A1A"></div>
-        <div class="stop-content">
-          <div class="stop-time">13:30–15:00</div>
-          <div class="stop-name">🥩 神户牛午餐 — 三宫步行圈</div>
-          <div class="stop-desc">从景点返回三宫正好饿了，状态最佳。推荐两家性价比高的正宗老店：</div>
-          <div class="beef-card">
-            <div class="beef-title">赤暖簾（Akanoren）</div>
-            <div class="beef-desc">从明治时期营业至今的百年老字号，日式传统风格。午市套餐¥2,500起，神户牛套餐¥4,000起。距元町站步行约7分钟。</div>
-          </div>
-          <div class="beef-card" style="margin-top:8px">
-            <div class="beef-title">Watahan（わたはん）</div>
-            <div class="beef-desc">提供寿喜烧、涮锅、铁板烧三种做法。推荐<b>寿喜烧套餐¥3,900起</b>，蘸山药泥品尝神户牛，带孩子比铁板烧更随意轻松。</div>
-          </div>
-          <div class="tags">
-            <span class="tag tag-beef">两人预估 ¥8,000–10,000</span>
-            <span class="tag tag-orange">建议提前预约</span>
-          </div>
-        </div>
-      </div>
-      <div class="stop">
-        <div class="stop-dot" style="background:#3B8BD4"></div>
-        <div class="stop-content">
-          <div class="stop-time">15:00–17:00</div>
-          <div class="stop-name">南京町 + 神户港散步</div>
-          <div class="stop-desc">南京町老祥记包子（¥200/个）；神户塔、Harborland 港口漫步拍照，悠闲结束神户一日</div>
-          <div class="tags"><span class="tag tag-green">免费</span></div>
-        </div>
-      </div>
-      <div class="stop">
-        <div class="stop-dot" style="background:#c8572a"></div>
-        <div class="stop-content">
-          <div class="stop-time">17:00</div>
-          <div class="stop-name">返回梅田</div>
-          <div class="stop-desc">三宫 → 梅田阪神电铁，约35分钟，到梅田约17:40</div>
-        </div>
-      </div>
-      <div class="tip-box"><b>Tips：</b>两家神户牛餐厅建议提前1–2周预约午餐13:30档；若动物王国休园，须磨海洋世界返回较晚，午餐可推至14:00。</div>
-      <div class="hotel-bar">
-        <div><div class="hname">🏨 Moxy Osaka Umeda</div><div class="hnote">连住第3晚 · 无需宅急便</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- D4 -->
-<div class="day-card">
-  <div class="day-header" onclick="toggleDay('d4')">
-    <div class="day-num" style="background:#ede8fd;color:#5b4ab0">D4</div>
-    <div class="day-info">
-      <div class="day-title">6月20日（周六）奈良半日 → 梅田</div>
-      <div class="day-subtitle">梅田出发 → 奈良喂鹿 → 天保山摩天轮</div>
-    </div>
-    <div class="day-chev" id="chev-d4">▼</div>
-  </div>
-  <div class="day-body" id="body-d4">
     <div class="day-body-inner">
       <div class="stop">
         <div class="stop-dot" style="background:#3B8BD4"></div>
@@ -487,6 +390,89 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
           <div class="stop-name">晚餐 — 天保山 Marketplace 或返回梅田</div>
         </div>
       </div>
+      <div class="hotel-bar">
+        <div><div class="hname">🏨 Moxy Osaka Umeda</div><div class="hnote">连住第3晚</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- D4 -->
+<div class="day-card">
+  <div class="day-header" onclick="toggleDay('d4')">
+    <div class="day-num" style="background:#FDE8E0;color:#9B3A1A">D4</div>
+    <div class="day-info">
+      <div class="day-title">6月20日（周五）铃鹿赛道乐园 🏎️</div>
+      <div class="day-subtitle">早出晚归 · 真实F1赛道卡丁车 · 马里奥粉丝的现实版</div>
+    </div>
+    <div class="day-chev" id="chev-d4">▼</div>
+  </div>
+  <div class="day-body" id="body-d4">
+    <div class="day-body-inner">
+      <div class="stop">
+        <div class="stop-dot" style="background:#3B8BD4"></div>
+        <div class="stop-content">
+          <div class="stop-time">8:00</div>
+          <div class="stop-name">大阪难波出发 → 近铁特急 → 白子站</div>
+          <div class="stop-desc">难波 → 近铁特急到白子站约1小时40分钟。建议提前买好近铁特急指定席，带娃有座更舒服</div>
+          <div class="tags"><span class="tag tag-blue">近铁特急 约¥2,500/人（含特急券）</span></div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-dot" style="background:#3B8BD4"></div>
+        <div class="stop-content">
+          <div class="stop-time">10:00</div>
+          <div class="stop-name">白子站 → 铃鹿赛道乐园 Motopia</div>
+          <div class="stop-desc">白子站搭三重交通巴士约20分钟（或出租车约15分钟）直达。10:00 开园正好到</div>
+          <div class="tags">
+            <span class="tag tag-blue">巴士 约¥400/人</span>
+            <span class="tag tag-gold">出租车约¥2,500/车</span>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-dot" style="background:#9B3A1A"></div>
+        <div class="stop-content">
+          <div class="stop-time">10:00–16:00</div>
+          <div class="stop-name">🏎️ 铃鹿赛道乐园 Motopia 全天畅玩</div>
+          <div class="stop-desc">本田打造的赛车主题亲子乐园，30+ 项目几乎都是"自己操控驾驶"，对马里奥赛车小粉丝是现实版梦境。儿子最爱：</div>
+          <div class="beef-card" style="background:#FDF0E8;border-color:#E8C4A8">
+            <div class="beef-title" style="color:#9B3A1A">🏁 必玩项目（3.5岁可玩）</div>
+            <div class="beef-desc" style="color:#7A4A2A">• <b>Putti Town 儿童驾驶区</b>：各种小车/摩托/卡丁车，自己开<br>• <b>Circuit Challenger</b>：双座电动卡丁车，大人开儿子坐（2岁以上陪同可乘）<br>• <b>Kids Bike Training</b>：儿童自行车训练<br>• 多个低龄向游乐设施，30+ 项目玩不完</div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-blue">通行证 大人¥4,300×2</span>
+            <span class="tag tag-blue">儿子（2岁以上）¥2,100</span>
+            <span class="tag tag-gold">营业 10:00–17:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-dot" style="background:#2a7a6e"></div>
+        <div class="stop-content">
+          <div class="stop-time">12:30</div>
+          <div class="stop-name">午餐 — 园内 S-PLAZA 餐厅区</div>
+          <div class="stop-desc">园内有多家餐厅，赛车主题美食，带娃方便。人均¥1,200–1,800</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-dot" style="background:#c8572a"></div>
+        <div class="stop-content">
+          <div class="stop-time">16:00</div>
+          <div class="stop-name">返程 → 白子站 → 大阪难波 → 梅田</div>
+          <div class="stop-desc">巴士回白子站，近铁特急返大阪，约1小时40分钟。到梅田约18:30</div>
+          <div class="tags"><span class="tag tag-blue">近铁特急 约¥2,500/人</span></div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-dot" style="background:#2a7a6e"></div>
+        <div class="stop-content">
+          <div class="stop-time">19:00</div>
+          <div class="stop-name">晚餐 — 梅田</div>
+          <div class="stop-desc">回到大本营轻松吃晚饭，儿子玩了一天卡丁车应该很满足</div>
+        </div>
+      </div>
+      <div class="tip-box"><b>⚠️ 重要：</b>铃鹿乐园营业时间随季节/赛事/平日变动，且<b>平日可能不定期休园</b>，6月20日出发前务必上官网 suzukacircuit.jp 确认当天开放及营业时间。若遇赛事日人会很多。近铁特急建议提前在官网或车站订指定席。</div>
       <div class="hotel-bar">
         <div><div class="hname">🏨 Moxy Osaka Umeda</div><div class="hnote">连住第4晚</div></div>
       </div>
@@ -552,11 +538,27 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
         </div>
       </div>
       <div class="stop">
-        <div class="stop-dot" style="background:#2a7a6e"></div>
+        <div class="stop-dot" style="background:#9B3A1A"></div>
         <div class="stop-content">
           <div class="stop-time">16:30</div>
-          <div class="stop-name">退房 · 梅田晚餐</div>
-          <div class="stop-desc">轻松吃最后一顿大阪饭，行李寄存前台，餐后取走，人均¥1,500–2,000</div>
+          <div class="stop-name">🥩 退房 · 梅田神户牛晚餐</div>
+          <div class="stop-desc">行李寄存前台，全家去吃这趟旅行的压轴神户牛。神户牛在大阪市区也能吃到正宗的，以下三家都在梅田/难波，高分推荐：</div>
+          <div class="beef-card" style="background:#FDF0E8;border-color:#E8C4A8">
+            <div class="beef-title" style="color:#9B3A1A">神户石田屋（梅田 Yodobashi 8F）⭐首选</div>
+            <div class="beef-desc" style="color:#7A4A2A">就在梅田大本营步行可达，套餐含 A4/A5 神户牛+沙拉+蒜香炒饭+柠檬雪葩，有中文/粤语服务，适合带小孩。评分 4.6。</div>
+          </div>
+          <div class="beef-card" style="background:#FDF0E8;border-color:#E8C4A8;margin-top:8px">
+            <div class="beef-title" style="color:#9B3A1A">Kobe Beef Steak Murakami（Grand Front 8F）</div>
+            <div class="beef-desc" style="color:#7A4A2A">评分高达 4.9，离 Moxy 和 Kids Plaza 都近，铁板烧台前现做有私人区，曾接待带小孩家庭，换班后顺路。</div>
+          </div>
+          <div class="beef-card" style="background:#FDF0E8;border-color:#E8C4A8;margin-top:8px">
+            <div class="beef-title" style="color:#9B3A1A">神户牛和ノ宫 / RIO（难波·御堂筋）</div>
+            <div class="beef-desc" style="color:#7A4A2A">评分 4.9、数千条好评，可同时品尝神户牛/近江牛/松阪牛三大和牛，师傅讲解三种吃法，多位家长带娃体验佳。</div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-beef">两人预估 ¥10,000–16,000</span>
+            <span class="tag tag-orange">强烈建议提前预约</span>
+          </div>
         </div>
       </div>
       <div class="stop">
@@ -630,24 +632,23 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
       <tr><td>USJ Studio Pass×2<span class="sub">6月平日均值</span></td><td>¥9,500×2</td><td>免费</td><td>¥19,000</td></tr>
       <tr><td>USJ EP7（妈妈）<span class="sub">含任天堂+哈利波特</span></td><td>¥20,000</td><td>—</td><td>¥20,000</td></tr>
       <tr><td>USJ EP4（爸爸）<span class="sub">含任天堂世界</span></td><td>¥12,000</td><td>—</td><td>¥12,000</td></tr>
-      <tr><td>方案A 神户动物王国<span class="sub">周四开放时</span></td><td>¥2,200×2</td><td>免费</td><td>¥4,400</td></tr>
-      <tr style="opacity:.5"><td>方案B 须磨海洋世界<span class="sub">休园备选，二选一</span></td><td>¥3,100×2</td><td>免费</td><td>¥6,200</td></tr>
-      <tr><td>东大寺大佛殿</td><td>¥800×2</td><td>免费</td><td>¥1,600</td></tr>
-      <tr><td>奈良鹿仙贝</td><td colspan="2">¥200×2份</td><td>¥400</td></tr>
-      <tr><td>天保山摩天轮<span class="sub">全程唯一一次</span></td><td>¥900×2</td><td>免费</td><td>¥1,800</td></tr>
-      <tr><td>Kids Plaza<span class="sub">爸爸1人+儿子</span></td><td>¥1,400×1</td><td>¥800</td><td>¥2,200</td></tr>
-      <tr class="total-row"><td colspan="3">门票合计（方案A）</td><td>≈ ¥61,400</td></tr>
+      <tr><td>东大寺大佛殿（D3）</td><td>¥800×2</td><td>免费</td><td>¥1,600</td></tr>
+      <tr><td>奈良鹿仙贝（D3）</td><td colspan="2">¥200×2份</td><td>¥400</td></tr>
+      <tr><td>天保山摩天轮（D3）<span class="sub">全程唯一一次</span></td><td>¥900×2</td><td>免费</td><td>¥1,800</td></tr>
+      <tr><td>🏎️ 铃鹿乐园 Motopia 通行证（D4）<span class="sub">入园+任意乘坐</span></td><td>¥4,300×2</td><td>¥2,100</td><td>¥10,700</td></tr>
+      <tr><td>Kids Plaza（D5）<span class="sub">爸爸1人+儿子</span></td><td>¥1,400×1</td><td>¥800</td><td>¥2,200</td></tr>
+      <tr class="total-row"><td colspan="3">门票合计</td><td>≈ ¥67,700</td></tr>
     </table>
   </div>
 
-  <div class="section-label">神户牛午餐（D3）</div>
+  <div class="section-label">神户牛晚餐（D5 · 大阪梅田）</div>
   <div class="cost-section">
-    <div class="cost-header">🥩 正宗神户牛 · 三宫步行圈</div>
+    <div class="cost-header">🥩 正宗神户牛 · 梅田/难波</div>
     <table class="cost-table">
       <tr><th>餐厅</th><th>人均</th><th>2人估算</th></tr>
-      <tr><td>赤暖簾<span class="sub">午市套餐¥2,500–4,000</span></td><td>¥3,000</td><td>≈ ¥6,000</td></tr>
-      <tr><td>Watahan 寿喜烧<span class="sub">套餐¥3,900起</span></td><td>¥4,000</td><td>≈ ¥8,000</td></tr>
-      <tr class="total-row"><td colspan="2">预估（取中值）</td><td>≈ ¥7,000</td></tr>
+      <tr><td>神户石田屋<span class="sub">梅田 · 套餐¥4,000–6,000</span></td><td>¥5,000</td><td>≈ ¥10,000</td></tr>
+      <tr><td>Murakami / 和ノ宫<span class="sub">铁板烧套餐¥6,000–8,000</span></td><td>¥7,000</td><td>≈ ¥14,000</td></tr>
+      <tr class="total-row"><td colspan="2">预估（取中值）</td><td>≈ ¥12,000</td></tr>
     </table>
   </div>
 
@@ -669,32 +670,32 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
       <tr><th>路段</th><th>单价/人</th><th>3人合计</th></tr>
       <tr><td>KIX → 梅田（D1）</td><td>¥1,430</td><td>¥4,290</td></tr>
       <tr><td>梅田 ↔ USJ（D2）</td><td>¥560</td><td>¥1,680</td></tr>
-      <tr><td>梅田 ↔ 神户三宫（D3）</td><td>¥410</td><td>¥2,460</td></tr>
-      <tr><td>三宫 ↔ 动物王国 Port Liner</td><td>¥580</td><td>¥1,160</td></tr>
-      <tr><td>梅田/难波 ↔ 近铁奈良（D4）</td><td>¥680</td><td>¥4,080</td></tr>
-      <tr><td>大阪市内 天保山往返（D4）</td><td>¥360</td><td>¥1,080</td></tr>
-      <tr><td>大阪市内零散（D1/D3/D5）</td><td>¥300</td><td>¥900</td></tr>
+      <tr><td>梅田/难波 ↔ 近铁奈良（D3）</td><td>¥680</td><td>¥4,080</td></tr>
+      <tr><td>大阪市内 天保山往返（D3）</td><td>¥360</td><td>¥1,080</td></tr>
+      <tr><td>🏎️ 难波 ↔ 白子站 近铁特急往返（D4）</td><td>¥5,000</td><td>¥15,000</td></tr>
+      <tr><td>白子站 ↔ 铃鹿乐园 巴士往返（D4）</td><td>¥800</td><td>¥2,400</td></tr>
+      <tr><td>大阪市内零散（D1/D5）</td><td>¥300</td><td>¥900</td></tr>
       <tr><td>梅田 → KIX 利木津（D5晚）</td><td>¥1,800</td><td>¥5,400</td></tr>
-      <tr class="total-row"><td colspan="2">交通合计</td><td>≈ ¥21,050</td></tr>
+      <tr class="total-row"><td colspan="2">交通合计</td><td>≈ ¥34,830</td></tr>
     </table>
   </div>
 
   <div class="section-label">总计</div>
   <div class="total-box">
-    <div class="total-row-item"><span class="label">🎫 景点门票（方案A）</span><span>≈ ¥61,400</span></div>
+    <div class="total-row-item"><span class="label">🎫 景点门票</span><span>≈ ¥67,700</span></div>
     <div class="total-row-item"><span class="label">🏨 住宿（5晚）</span><span>≈ ¥102,000</span></div>
-    <div class="total-row-item"><span class="label">🚃 交通</span><span>≈ ¥21,050</span></div>
-    <div class="total-row-item"><span class="label">🥩 神户牛午餐</span><span>≈ ¥7,000</span></div>
+    <div class="total-row-item"><span class="label">🚃 交通</span><span>≈ ¥34,830</span></div>
+    <div class="total-row-item"><span class="label">🥩 神户牛晚餐（D5）</span><span>≈ ¥12,000</span></div>
     <div class="total-row-item"><span class="label">🍽️ 其余餐饮（估算）</span><span>≈ ¥55,000</span></div>
     <div class="total-row-item"><span class="label">🛒 零食/杂费</span><span>≈ ¥12,000</span></div>
     <div class="total-row-item">
       <span>合计（不含机票）</span>
-      <span>≈ ¥258,450<br><span style="font-size:12px;font-weight:400;opacity:.6">约人民币 ¥12,300</span></span>
+      <span>≈ ¥283,530<br><span style="font-size:12px;font-weight:400;opacity:.6">约人民币 ¥13,500</span></span>
     </div>
     <div class="total-note">
       ※ USJ EP 动态定价，旺季6月可能更高，以实际购票为准<br>
       ※ 酒店价格为参考预估，以预订时价格为准<br>
-      ※ <span style="color:#f5c8c8">动物王国通常周四休园，6月19日请提前官网确认</span>
+      ※ <span style="color:#f5c8c8">铃鹿乐园平日可能不定期休园，6月20日请提前官网 suzukacircuit.jp 确认开放</span>
     </div>
   </div>
 
@@ -709,7 +710,7 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
     <div class="hotel-badge">D1–D5<br>4晚</div>
     <div class="hotel-info">
       <div class="hname2">⭐ Moxy Osaka Umeda</div>
-      <div class="hnote2">梅田/福岛 · 步行覆盖大丸/阪急/Grand Front/Kids Plaza · 万豪可延迟退房至16:00 · 神户/奈良/USJ出发均方便</div>
+      <div class="hnote2">梅田/福岛 · 步行覆盖大丸/阪急/Grand Front/Kids Plaza · 万豪可延迟退房至16:00 · 奈良/铃鹿/USJ出发均方便</div>
     </div>
   </div>
 
@@ -752,15 +753,22 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
       <div class="checklist-item">
         <div class="check-dot" style="background:#c8572a"></div>
         <div>
-          <div class="check-name">确认神户动物王国 6月19日是否休园</div>
-          <div class="check-desc">官网：kobe-oukoku.com。通常周四休息，需提前确认。若休园改去须磨海洋世界（方案B）。</div>
+          <div class="check-name">🏎️ 确认铃鹿乐园 6月20日是否开放</div>
+          <div class="check-desc">官网：suzukacircuit.jp。平日可能不定期休园，营业时间随季节/赛事变动，务必出发前确认当天开放及 10:00–17:00 时段。</div>
         </div>
       </div>
       <div class="checklist-item">
         <div class="check-dot" style="background:#c8572a"></div>
         <div>
-          <div class="check-name">预订神户牛餐厅（D3 午餐13:30）</div>
-          <div class="check-desc">赤暖簾或 Watahan，提前1–2周预约午餐档。周四工作日相对好约。</div>
+          <div class="check-name">预订近铁特急指定席（D4 往返白子站）</div>
+          <div class="check-desc">难波↔白子单程约1小时40分钟，建议官网或车站提前订指定席，带娃有座更舒服。</div>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-dot" style="background:#c8572a"></div>
+        <div>
+          <div class="check-name">🥩 预约神户牛餐厅（D5 梅田晚餐）</div>
+          <div class="check-desc">神户石田屋（梅田）/ Murakami（Grand Front）/ 和ノ宫（难波），提前1–2周通过 Tabelog 或电话预约。</div>
         </div>
       </div>
       <div class="checklist-item">
@@ -813,8 +821,8 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--i
     有专用行李仓，带娃无需爬楼梯换月台<br><br>
     <b>USJ Express Pass 购票</b><br>
     约4月18日前后开放，Klook 等平台可购，支持国际信用卡。开放即抢，6月旺季当天可能售罄。<br><br>
-    <b>神户牛餐厅预约</b><br>
-    赤暖簾可通过 Tabelog 或电话预约；Watahan 同样建议提前预约午餐时段。
+    <b>神户牛餐厅预约（D5 梅田）</b><br>
+    神户石田屋（梅田 Yodobashi）、Murakami（Grand Front）、和ノ宫/RIO（难波）均可通过 Tabelog 或电话提前预约，建议订晚市时段。
   </div>
 
 </div><!-- end tips -->
@@ -1093,8 +1101,7 @@ const stopAddresses = [
 ];
 
 const optionAddresses = [
-  ['ab3a', 'Kobe Animal Kingdom, 7-1-9 Minatojima Minamimachi, Chuo Ward, Kobe, Hyogo 650-0047, Japan'],
-  ['ab3b', 'Kobe Suma Sea World, 1-3 Wakamiyacho, Suma Ward, Kobe, Hyogo 654-0049, Japan']
+  ['ab3a', 'Suzuka Circuit, 7992 Inocho, Suzuka, Mie 510-0295, Japan']
 ];
 
 const nightAddresses = [
@@ -1105,8 +1112,8 @@ const nightAddresses = [
 ];
 
 const beefAddresses = [
-  'Akanoren, 1 Chome-9-1 Motomachidori, Chuo Ward, Kobe, Hyogo 650-0022, Japan',
-  'Watahan, 1 Chome-3-7 Motomachidori, Chuo Ward, Kobe, Hyogo 650-0022, Japan'
+  'Kobe Ishidaya, Yodobashi Camera Multimedia Umeda 8F, 1-1 Ofukacho, Kita Ward, Osaka 530-0011, Japan',
+  'Kobe Beef Steak Murakami Grand Front Osaka, 4-20 Ofukacho, Kita Ward, Osaka 530-0011, Japan'
 ];
 
 function fallbackCopyText(text) {
